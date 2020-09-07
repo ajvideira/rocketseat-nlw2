@@ -16,11 +16,6 @@ export default class ClassesController {
         const week_day = Number(filters.week_day);
         const time = filters.time as string;
 
-        console.log(subject);
-        console.log(week_day);
-        console.log(time);
-        
-
         if (!subject || !week_day || !time) {
             return response.status(400).json({
                 error: 'Missing filter to search classes'
@@ -28,8 +23,6 @@ export default class ClassesController {
         }
 
         const timeInMinutes = convertHoursToMinutes(time);
-
-        console.log(timeInMinutes);
 
         const classes = await db.select(['c.*', 'u.*'])
             .from({c:'classes'})
