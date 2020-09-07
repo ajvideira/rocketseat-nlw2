@@ -1,4 +1,5 @@
 import express from 'express';
+import ClassesController from './controllers/ClassesController';
 
 const routes = express.Router();
 
@@ -11,12 +12,9 @@ const routes = express.Router();
 //Route/Path Params: Identificar qual recurso será atualzado ou deletado
 //Query Param: Paginação, filtros, ordenação, etc... 
 
-routes.post('/classes', (request, response) => {
-    const data = request.body;
+const classesController = new ClassesController();
 
-    console.log(data);
-
-    return response.send();
-});
+routes.get('/classes', classesController.index);
+routes.post('/classes', classesController.create);
 
 export default routes;
