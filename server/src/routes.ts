@@ -11,7 +11,7 @@ const routes = express.Router();
 
 //Corpo (RequestBody): Dados para criação ou atualização de um registro
 //Route/Path Params: Identificar qual recurso será atualzado ou deletado
-//Query Param: Paginação, filtros, ordenação, etc... 
+//Query Param: Paginação, filtros, ordenação, etc...
 
 const classesController = new ClassesController();
 const connectionsControler = new ConnectionsController();

@@ -7,26 +7,26 @@ import LogoIcon from '../../assets/images/logo.svg';
 import './styles.css';
 
 interface PageHaderProps {
-    title: String;
+  title: String;
 }
 
 const PageHader: React.FC<PageHaderProps> = (props) => {
-    return (
-        <header className="page-header">
-            <div className="top-bar-container">
-                <Link to="/" title="Voltar">
-                    <img src={BackIcon} alt="Voltar" />
-                </Link>
-                <Link to="/" title="Proffy">
-                    <img src={LogoIcon} alt="Proffy" />
-                </Link>
-            </div>
-            <div className="header-content">
-                <strong>{props.title}</strong>
-                {props.children}
-            </div>
-        </header>
-    );
-}
+  return (
+    <header className="page-header">
+      <div className="top-bar-container">
+        <Link to="/" title="Voltar">
+          <img src={BackIcon} alt="Voltar" />
+        </Link>
+        <Link to="/" title="Proffy">
+          <img src={LogoIcon} alt="Proffy" />
+        </Link>
+      </div>
+      <div className="header-content">
+        <strong>{props.title}</strong>
+        {props.children}
+      </div>
+    </header>
+  );
+};
 
 export default PageHader;
