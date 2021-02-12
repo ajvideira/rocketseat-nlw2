@@ -1,43 +1,49 @@
 import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
+import Teacher from '../../models/teacher';
+import api from '../../services/api';
 
 import './styles.css';
 
-interface TeacherItemProps {}
+interface TeacherItemProps {
+  teacher: Teacher;
+}
 
-const TeacherItem: React.FC<TeacherItemProps> = (props) => {
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  async function createConnection(id: number) {
+    await api.post('connections', { user_id: id });
+  }
+
   return (
     <article className="teacher-item">
       <header>
-        <img
-          src="https://avatars1.githubusercontent.com/u/5177402?s=460&u=33774f29e7abde4236899cac5ba6d592b888b7a0&v=4"
-          alt="Jonathan Alba Videira"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>Jonathan Alba Videira</strong>
-          <span>Química</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
 
-      <p>
-        Entusiasta das melhores tecnologias de química avançada.
-        <br />
-        <br />
-        Apaixonado por explodir coisas em laboratório e por mudar a vida das
-        pessoas através de experiências. Mais de 200.000 pessoas já passaram por
-        uma das minhas explosões.
-      </p>
+      <p>{teacher.bio}</p>
 
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 80,00</strong>
+          <strong>R$ {teacher.cost}</strong>
         </p>
-        <button type="button">
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href={`https://wa.me/${teacher.whatsapp}`}
+          title="Entrar em contato"
+          onClick={(e) => {
+            createConnection(teacher.id);
+          }}
+        >
           <img src={whatsappIcon} alt="Whatsapp" />
           Entrar em Contato
-        </button>
+        </a>
       </footer>
     </article>
   );

@@ -13,7 +13,7 @@ export default class ClassesController {
     const filters = request.query;
 
     const subject = filters.subject as string;
-    const week_day = Number(filters.week_day);
+    const week_day = filters.week_day as string;
     const time = filters.time as string;
 
     if (!subject || !week_day || !time) {
@@ -30,7 +30,7 @@ export default class ClassesController {
       .join({ u: 'users' }, 'c.user_id', '=', 'u.id')
       .join({ cs: 'class_schedule' }, 'c.id', '=', 'cs.class_id')
       .where('c.subject', '=', subject)
-      .andWhere('cs.week_day', '=', week_day)
+      .andWhere('cs.week_day', '=', Number(week_day))
       .andWhere('cs.from', '<=', timeInMinutes)
       .andWhere('cs.to', '>', timeInMinutes);
     return response.status(200).json(classes);

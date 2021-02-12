@@ -8,6 +8,7 @@ import './styles.css';
 
 interface PageHaderProps {
   title: String;
+  descritpion?: string;
 }
 
 const PageHader: React.FC<PageHaderProps> = (props) => {
@@ -23,6 +24,8 @@ const PageHader: React.FC<PageHaderProps> = (props) => {
       </div>
       <div className="header-content">
         <strong>{props.title}</strong>
+        {props.descritpion && <p>{props.descritpion}</p>}
+
         {props.children}
       </div>
     </header>
