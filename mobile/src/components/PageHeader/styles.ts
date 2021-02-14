@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     lineHeight: 29,
     color: '#FFF',
     maxWidth: 150,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginVertical: 40,
   },
 });
